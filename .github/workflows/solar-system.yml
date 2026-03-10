@@ -24,7 +24,7 @@ jobs:
           - name: Checkout Code
             uses: actions/checkout@v4
             
-          - name: Install Node
+          - name: Install Node ${{ matrix.node-version }}
             uses: actions/setup-node@v4
             with:
                 node_version: ${{ matrix.node-version }}
@@ -40,3 +40,28 @@ jobs:
             with:
                 name: Mocha-test-result-${{ matrix.os }}-${{ matrix.node-version }}
                 path: test-results.xml
+
+
+    Coverage:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout code
+            uses: actions/checkout@v4
+            
+          - name: Setup Node
+            uses: actions/setup-node@v4
+            with:
+                node_version: 18
+
+          - name: Install Dependency
+            run: npm install
+
+          - name: Check code coverage
+            run: npm run coverage
+
+          - name: Archieve Test results
+            uses: actions/upload-artifacts@v4
+            with:
+                name: Code-Coverage-Result
+                path: coverage
+                retention-days: 10
