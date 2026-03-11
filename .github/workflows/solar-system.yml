@@ -38,7 +38,7 @@ jobs:
           - name: Archieve Tests
             uses: actions/upload-artifact@v4
             with:
-                name: Mocha-test-result-${{ matrix.os }}-${{ matrix.node-version }}
+                name: Mocha-test-result
                 path: test-results.xml
                 overwrite: true
 
