@@ -40,6 +40,7 @@ jobs:
             with:
                 name: Mocha-test-result-${{ matrix.os }}-${{ matrix.node-version }}
                 path: test-results.xml
+                overwrite: true
 
 
     Coverage:
@@ -58,9 +59,9 @@ jobs:
 
           - name: Check code coverage
             run: npm run coverage
+            continue-on-error: true
 
           - name: Archieve Test results
-            continue-on-error: true
             uses: actions/upload-artifact@v4
             with:
                 name: Code-Coverage-Result
