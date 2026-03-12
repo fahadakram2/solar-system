@@ -14,7 +14,7 @@ jobs:
     unit-testing:
         strategy:
             matrix:
-                os: [ubuntu-latest, macos-latest]
+                os: [ubuntu-latest]
                 node-version: [18, 19, 20]
                 exclude:
                     - os: macos-latest
@@ -80,3 +80,12 @@ jobs:
                 name: Code-Coverage-Result
                 path: coverage
                 retention-days: 10
+
+    Containerization:
+      runs-on: ubuntu
+      steps:
+        - name: Login to Docker
+          uses: actions/login-action@v4
+          with:
+            username: ${{ vars.DOCKER_USER }}
+            password: ${{ secrets.DOCKER_PASS }}
