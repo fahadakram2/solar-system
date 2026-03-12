@@ -57,7 +57,7 @@ jobs:
 
     Coverage:
         container:
-          image: node-18
+          image: node:18
 
         
         runs-on: ubuntu-latest
