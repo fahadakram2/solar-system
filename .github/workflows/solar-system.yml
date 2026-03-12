@@ -83,6 +83,7 @@ jobs:
 
     Containerization:
       runs-on: ubuntu
+      needs: [unit-testing, Coverage]
       steps:
         - name: Login to Docker
           uses: actions/login-action@v4
