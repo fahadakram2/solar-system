@@ -96,7 +96,7 @@ jobs:
           with:
             context: .
             push: false
-            tags: ${{ env.DOCKER_USER }}/solar-system:${{ github.sha }}
+            tags: ${{ vars.DOCKER_USER }}/solar-system:${{ github.sha }}
 
         - name: Image Testing
           run: |
