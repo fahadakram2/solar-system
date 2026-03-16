@@ -53,13 +53,18 @@ jobs:
                 name: Mocha-test-result-${{ matrix.os }}-${{ matrix.node-version }}
                 path: test-results.xml
                
-
-
     Coverage:
         container:
           image: node:18
-
-        
+        services:
+          mongo-db:
+            image: siddharth67/mongo-db:non-prod
+            options:
+              --name mongo
+        env:
+          MONGO_URI: 'mongodb://mongo:27017/superData'
+          MONGO_USERNAME: non-prod-user
+          MONGO_PASSWORD: non-prod-password
         runs-on: ubuntu-latest
         steps:
           - name: Checkout code
